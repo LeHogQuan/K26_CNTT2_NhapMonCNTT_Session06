@@ -1,0 +1,13 @@
+Phần 1: phân tích
+-máy tính bị "Not Responding" khi mở bằng Notepad vì bị nặng và tràn bộ nhớ RAM
+
+-lệnh cat lỗi trong CMD vì CMD truyền thống không hỗ trợ dùng cat
+
+-trong powershell sẽ dùng được vì có hỗ trợ tương tự như get-content
+
+Phần 2:
+1. xem toàn bộ nội dung tệp
+get-content server_log_800MB.log
+
+2.chỉ xem 10 dòng cuối
+gc server_log_800MB.log -tail 10
