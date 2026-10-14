@@ -1,0 +1,9 @@
+Phần 1:
+An đang phải tìm các từ chứa lỗi error và 404 chứ không phải liệt kê file
+
+get-childitem là để liệt kê file , đường dẫn 
+
+còn select-string dùng để tìm các dòng chữ chứa các từ mình cần tìm thì ở đây là error và 404
+
+Phần 2:
+get-childitem -recurse -file | select-string "error" | ForEach-Object {"$($_.Linenumber)"}
