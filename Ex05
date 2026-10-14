@@ -1,0 +1,25 @@
+ phần 1
+
+1. header block: ghi tên script, tác giả và ngày tạo bằng dấu #
+2. biến cấu hình: dùng biến `$duong_dan_log` và `$duong_dan_bao_cao` để khai báo tên file
+3. thông báo tiến trình: dùng `Write-Host` để thông báo bắt đầu và hoàn thàn
+4. logic xử lý: dùng Get-Conten đọc log, Select-String lọc lỗi 404 và >> ghi kết quả vào báo cáo
+
+phần 2
+
+# Ten script: auto_report.ps1
+# Tac gia: Le Hong Quan
+# Ngay tao: 14/10/2026
+
+$duong_dan_log = "server.log"
+$duong_dan_bao_cao = "report.txt"
+
+write-Host "Dang loc log..."
+
+Set-content $duong_dan_bao_cao "=== HE THONG TU DONG LOC LOG ==="
+gc $duong_dan_log | Select-String "404" | ForEach-Object { $_.Line } >> $duong_dan_bao_cao
+
+write-host "Da loc log xong!"
+write-host "Ket qua duoc luu trong report.txt"
+
+
