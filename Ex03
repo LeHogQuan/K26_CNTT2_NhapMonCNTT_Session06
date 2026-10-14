@@ -1,0 +1,7 @@
+Phần 1:
+dùng select-string để tìm các từ khóa trong file | tiếp sẽ ghi file muốn tìm kế bến | cuối cùng đóng khung và .count để nó đếm số dòng xem có bao nhiêu dòng 
+
+Phần 2:
+(select-string "NOT TIMEOUT" app.log).count
+
+-app.log là tên file mà lệnh muốn tìm not timeout bên trong, app.log chỉ là tên file ví dụ vì đề bài ko ghi rõ tìm NOT TIMEOUT trong file nào
