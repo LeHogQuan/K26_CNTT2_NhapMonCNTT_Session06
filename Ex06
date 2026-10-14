@@ -1,0 +1,45 @@
+Phần 1
+
+Đoạn mã nguy hiểm vì có thể xóa hàng loạt tệp và thư mục trên ổ C.
+
+- -Path xác định đường dẫn cần xóa.
+- -Recurse xóa cả nội dung bên trong thư mục con.
+- -Force xử lý cả các tệp ẩn 
+
+Ba nguyên tắc vàng
+
+1. Hiểu rõ lệnh trước khi chạy.
+2. Kiểm tra đường dẫn và phạm vi tác động.
+3. Thử nghiệm an toàn trước khi chạy trên dữ liệu thật.
+
+Phần 2
+# Di chuyen den thu muc logs
+Set-Location ".\logs"
+
+# Loc dong WARNING tu system.log
+Select-String "WARNING" "system.log" |ForEach-Object { $_.Line } | Set-Content "issues.txt"
+
+# Quay lai thu muc du an
+Set-Location ..
+
+# Xoa cac file tmp trong thu muc du an
+Get-ChildItem -Path . -Filter "*.tmp" -File -Recurse |rm -whatif
+
+
+Lệnh -WhatIf chỉ mô phỏng việc xóa để kiểm tra trước. Sau khi xác nhận đúng phạm vi, có thể bỏ `-WhatIf` để thực hiện xóa thậ
+
+Phần 3: Kiểm thử và xác minh
+
+1. Xem nội dung báo cáo:
+
+  Get-Content .\logs\issues.txt
+
+2. Liệt kê các tệp .tmp còn lại:
+
+   Get-ChildItem -Path . -Filter "*.tmp" -File -Recurse
+
+3. Kiểm tra tệp báo cáo đã tồn tại:
+
+   Test-Path .\logs\issues.txt
+
+nếu kết quả là trưe, tệp báo cáo đã được tạo 
